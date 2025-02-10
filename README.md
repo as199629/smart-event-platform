@@ -59,3 +59,4 @@ By default, the application will run on `http://localhost:3000`.
 
 This project is open-source under the MIT License.
 # Smart Event Platform
+# smart-event-platform
