@@ -1,34 +1,78 @@
 <template>
-    <div class="relative w-full h-screen">
-        <!-- Three.js Canvas for Meteor Shower -->
+    <div class="relative w-full h-screen bg-gray-900">
+        <!-- Three.js Canvas for Meteor Shower Background -->
         <canvas ref="canvasRef" class="absolute inset-0 w-full h-full"></canvas>
 
         <!-- Text Content -->
         <div
             class="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-10"
         >
-            <h1 class="text-5xl font-bold drop-shadow-lg">
-                🚀 Smart Event Management
-            </h1>
-            <p class="text-lg mt-4">
-                Comprehensive solution for lottery, registration, and data
-                analysis
-            </p>
-            <NuxtLink
-                to="/home"
-                class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
-            >
-                Get Started
-            </NuxtLink>
+            <h1 class="text-4xl font-bold drop-shadow-lg">🎲 Lottery System</h1>
+            <p class="text-lg mt-4">Select the participants for your event</p>
+
+            <!-- Lottery Controls -->
+            <div class="mt-8 space-x-4">
+                <button
+                    class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+                    @click="startLottery"
+                >
+                    Start Lottery
+                </button>
+                <button
+                    class="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow hover:bg-red-700 transition"
+                    @click="clearLottery"
+                >
+                    Clear Lottery
+                </button>
+            </div>
+
+            <!-- Display Lottery Results -->
+            <div v-if="winner" class="mt-6 text-xl font-semibold">
+                <p class="text-lg">🎉 Winner: {{ winner }}</p>
+            </div>
+
+            <!-- Participants List -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold">Participants</h2>
+                <ul class="text-lg mt-4">
+                    <li
+                        v-for="(participant, index) in participants"
+                        :key="index"
+                    >
+                        {{ participant }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue'
+    import { ref, onMounted } from 'vue'
     import * as THREE from 'three'
 
     const canvasRef = ref<HTMLCanvasElement | null>(null)
+    const participants = ref<string[]>([
+        'Alice',
+        'Bob',
+        'Charlie',
+        'Dave',
+        'Eve',
+    ])
+    const winner = ref<string | null>(null)
+
+    // Function to start the lottery
+    const startLottery = () => {
+        const randomIndex = Math.floor(
+            Math.random() * participants.value.length
+        )
+        winner.value = participants.value[randomIndex]
+    }
+
+    // Function to clear the winner
+    const clearLottery = () => {
+        winner.value = null
+    }
 
     onMounted(() => {
         if (!canvasRef.value) return
