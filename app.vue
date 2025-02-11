@@ -1,12 +1,16 @@
 <template>
-    <Navbar v-if="!isHomePage" />
-    <NuxtPage />
+    <div>
+        <Navbar v-if="!isHomePage" />
+        <main :class="{ 'pt-16': !isHomePage }">
+            <NuxtPage />
+        </main>
+    </div>
 </template>
 
 <script setup lang="ts">
     import { computed } from 'vue'
     import { useRoute } from 'vue-router'
-    import Navbar from '@/components/Navbar.vue'
+    import Navbar from '@/components/navbar/Navbar.vue'
 
     const route = useRoute()
     const isHomePage = computed(() => route.name === 'index') // 假設首頁的路由名稱是 'home'

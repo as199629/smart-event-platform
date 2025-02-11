@@ -59,6 +59,48 @@
                     <option value="priceAsc">Price (Low to High)</option>
                 </select>
             </div>
+
+            <!-- 區域篩選 -->
+            <div>
+                <label
+                    for="region"
+                    class="block text-sm font-medium text-gray-700"
+                >
+                    Region
+                </label>
+                <select
+                    v-model="selectedRegion"
+                    class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                >
+                    <option value="">All Regions</option>
+                    <option value="north">North</option>
+                    <option value="central">Central</option>
+                    <option value="south">South</option>
+                </select>
+            </div>
+
+            <!-- 縣市篩選 -->
+            <div>
+                <label
+                    for="city"
+                    class="block text-sm font-medium text-gray-700"
+                >
+                    City
+                </label>
+                <select
+                    v-model="selectedCity"
+                    class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                >
+                    <option value="">All Cities</option>
+                    <option
+                        v-for="city in availableCities"
+                        :key="city"
+                        :value="city"
+                    >
+                        {{ city }}
+                    </option>
+                </select>
+            </div>
         </div>
 
         <!-- 活動卡片區塊 -->
@@ -121,7 +163,17 @@
                         </p>
                         <p class="text-gray-600 text-sm flex items-center">
                             <CurrencyDollarIcon class="w-4 h-4 mr-2" />
-                            <span>${{ event.price }}</span>
+                            <span>{{ event.price }}</span>
+                        </p>
+                        <p class="text-gray-600 text-sm flex items-center">
+                            <MapPinIcon class="w-4 h-4 mr-2" />
+                            <span>
+                                {{
+                                    event.region.charAt(0).toUpperCase() +
+                                    event.region.slice(1)
+                                }}
+                                - {{ event.city }}
+                            </span>
                         </p>
                     </div>
 
@@ -145,17 +197,19 @@
 
 <script setup lang="ts">
     import { ref, computed, onMounted } from 'vue'
-    import { useEventStore } from '~/stores/events'
     import {
         CalendarIcon,
         UserGroupIcon,
         CurrencyDollarIcon,
+        MapPinIcon,
     } from '@heroicons/vue/24/outline'
 
     const eventStore = useEventStore()
     const searchQuery = ref('')
     const selectedStatus = ref('')
     const sortBy = ref('dateAsc')
+    const selectedRegion = ref('')
+    const selectedCity = ref('')
 
     // Initialize events
     onMounted(() => {
@@ -163,15 +217,39 @@
     })
 
     // Use events from store
+    const availableCities = computed(() => {
+        const cityMap: Record<string, string[]> = {
+            north: [
+                'Taipei',
+                'New Taipei',
+                'Keelung',
+                'Taoyuan',
+                'Hsinchu',
+                'Yilan',
+            ],
+            central: ['Taichung', 'Miaoli', 'Changhua', 'Nantou', 'Yunlin'],
+            south: ['Kaohsiung', 'Tainan', 'Chiayi', 'Pingtung'],
+        }
+        return selectedRegion.value ? cityMap[selectedRegion.value] : []
+    })
+
     const filteredEvents = computed(() => {
-        let filtered = eventStore.events.filter(event => {
+        const filtered = eventStore.events.filter(event => {
             const matchesSearch = event.name
                 .toLowerCase()
                 .includes(searchQuery.value.toLowerCase())
             const matchesStatus = selectedStatus.value
                 ? event.status === selectedStatus.value
                 : true
-            return matchesSearch && matchesStatus
+            const matchesRegion = selectedRegion.value
+                ? event.region === selectedRegion.value
+                : true
+            const matchesCity = selectedCity.value
+                ? event.city === selectedCity.value
+                : true
+            return (
+                matchesSearch && matchesStatus && matchesRegion && matchesCity
+            )
         })
 
         // Apply sorting

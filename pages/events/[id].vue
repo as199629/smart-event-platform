@@ -32,6 +32,14 @@
                         </span>
                         <span class="flex items-center gap-2">
                             <i class="bi bi-geo-alt"></i>
+                            {{
+                                event.region.charAt(0).toUpperCase() +
+                                event.region.slice(1)
+                            }}
+                            - {{ event.city }}
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <i class="bi bi-pin-map"></i>
                             {{ event.location }}
                         </span>
                     </div>
@@ -109,6 +117,25 @@
                         class="prose max-w-none"
                     >
                         <p class="text-gray-600">{{ event.description }}</p>
+
+                        <!-- Add Google Maps -->
+                        <div class="mt-6">
+                            <h3 class="text-lg font-semibold mb-3">
+                                Event Location
+                            </h3>
+                            <div
+                                class="w-full h-[400px] rounded-lg overflow-hidden"
+                            >
+                                <iframe
+                                    width="100%"
+                                    height="100%"
+                                    style="border: 0"
+                                    loading="lazy"
+                                    allowfullscreen
+                                    :src="`https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=${encodeURIComponent(event.location + ', ' + event.city + ', Taiwan')}`"
+                                ></iframe>
+                            </div>
+                        </div>
                     </div>
 
                     <div
@@ -161,6 +188,8 @@
     const route = useRoute()
     const eventStore = useEventStore()
     const registered = ref(false)
+    const config = useRuntimeConfig()
+    const googleMapsApiKey = config.public.googleMapsApiKey
 
     // Get event from store
     const event = computed(() => {

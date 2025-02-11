@@ -12,12 +12,15 @@
         "format": "prettier --write ."
     },
     "dependencies": {
+        "@auth/core": "^0.37.4",
         "@heroicons/vue": "^2.2.0",
-        "@nuxt/image": "^1.8.1",
+        "@nuxt/image": "^1.9.0",
         "@nuxtjs/color-mode": "^3.5.2",
         "@pinia/nuxt": "^0.5.4",
+        "@sidebase/nuxt-auth": "^0.10.0",
         "@types/three": "^0.173.0",
         "chart.js": "^4.4.7",
+        "dotenv": "^16.4.7",
         "nuxt": "^3.15.4",
         "pinia": "^2.3.1",
         "prettier": "^3.5.0",

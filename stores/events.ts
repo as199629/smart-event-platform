@@ -19,6 +19,8 @@ interface Event {
         time: string
         activity: string
     }>
+    region: 'north' | 'central' | 'south'
+    city: string
 }
 
 export const useEventStore = defineStore('events', {
@@ -50,7 +52,9 @@ export const useEventStore = defineStore('events', {
                         { time: '13:30', activity: 'Afternoon Ride' },
                         { time: '16:30', activity: 'Return to Starting Point' },
                         { time: '17:00', activity: 'Event Ends' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 2,
@@ -69,7 +73,9 @@ export const useEventStore = defineStore('events', {
                         { time: '19:30', activity: 'Preliminary Matches' },
                         { time: '20:30', activity: 'Finals' },
                         { time: '22:00', activity: 'Award Ceremony' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 3,
@@ -90,7 +96,9 @@ export const useEventStore = defineStore('events', {
                         { time: '14:00', activity: 'Ecological Guide Tour' },
                         { time: '16:00', activity: 'Hot Spring Experience' },
                         { time: '18:00', activity: 'Tour Ends' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 4,
@@ -111,7 +119,9 @@ export const useEventStore = defineStore('events', {
                         { time: '12:00', activity: 'Lunch Break' },
                         { time: '13:30', activity: 'Race Time' },
                         { time: '16:00', activity: 'Award Ceremony' }
-                    ]
+                    ],
+                    region: 'central',
+                    city: 'Taichung'
                 },
                 {
                     id: 5,
@@ -130,7 +140,9 @@ export const useEventStore = defineStore('events', {
                         { time: '10:30', activity: 'Basic Yoga Poses' },
                         { time: '11:15', activity: 'Meditation Practice' },
                         { time: '12:00', activity: 'Session Ends' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 6,
@@ -150,7 +162,9 @@ export const useEventStore = defineStore('events', {
                         { time: '17:00', activity: 'Second Act' },
                         { time: '19:00', activity: 'Headliner Performance' },
                         { time: '22:00', activity: 'Festival Ends' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 7,
@@ -169,7 +183,9 @@ export const useEventStore = defineStore('events', {
                         { time: '14:30', activity: 'Sauce Making' },
                         { time: '15:30', activity: 'Pasta Workshop' },
                         { time: '16:30', activity: 'Tasting Session' }
-                    ]
+                    ],
+                    region: 'south',
+                    city: 'Kaohsiung'
                 },
                 {
                     id: 8,
@@ -188,7 +204,9 @@ export const useEventStore = defineStore('events', {
                         { time: '14:30', activity: 'Outdoor Practice' },
                         { time: '16:00', activity: 'Photo Review' },
                         { time: '17:00', activity: 'Workshop Ends' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 9,
@@ -207,7 +225,9 @@ export const useEventStore = defineStore('events', {
                         { time: '07:00', activity: 'Half Marathon Start' },
                         { time: '08:00', activity: 'Fun Run Start' },
                         { time: '12:00', activity: 'Award Ceremony' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 10,
@@ -226,7 +246,9 @@ export const useEventStore = defineStore('events', {
                         { time: '14:00', activity: 'Artist Guided Tour' },
                         { time: '16:00', activity: 'Art Talk' },
                         { time: '18:00', activity: 'Exhibition Closes' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 11,
@@ -246,7 +268,9 @@ export const useEventStore = defineStore('events', {
                         { time: '17:00', activity: 'Finals' },
                         { time: '19:00', activity: 'Guest Performance' },
                         { time: '20:00', activity: 'Awards' }
-                    ]
+                    ],
+                    region: 'central',
+                    city: 'Taichung'
                 },
                 {
                     id: 12,
@@ -266,7 +290,9 @@ export const useEventStore = defineStore('events', {
                         { time: '12:00', activity: 'Networking Lunch' },
                         { time: '14:00', activity: 'Tech Forums' },
                         { time: '16:00', activity: 'Panel Discussion' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 13,
@@ -285,7 +311,9 @@ export const useEventStore = defineStore('events', {
                         { time: '19:30', activity: 'Red Wine Tasting' },
                         { time: '20:30', activity: 'Food Pairing' },
                         { time: '21:00', activity: 'Event Concludes' }
-                    ]
+                    ],
+                    region: 'south',
+                    city: 'Tainan'
                 },
                 {
                     id: 14,
@@ -305,7 +333,9 @@ export const useEventStore = defineStore('events', {
                         { time: '14:00', activity: 'Quarter Finals' },
                         { time: '16:00', activity: 'Finals' },
                         { time: '18:00', activity: 'Awards' }
-                    ]
+                    ],
+                    region: 'central',
+                    city: 'Taichung'
                 },
                 {
                     id: 15,
@@ -324,7 +354,9 @@ export const useEventStore = defineStore('events', {
                         { time: '20:00', activity: 'Fashion Show Begins' },
                         { time: '21:00', activity: 'Meet the Designers' },
                         { time: '21:30', activity: 'Event Ends' }
-                    ]
+                    ],
+                    region: 'north',
+                    city: 'Taipei'
                 },
                 {
                     id: 16,
@@ -344,7 +376,9 @@ export const useEventStore = defineStore('events', {
                         { time: '15:00', activity: 'Playoffs' },
                         { time: '18:00', activity: 'Grand Finals' },
                         { time: '20:00', activity: 'Prize Ceremony' }
-                    ]
+                    ],
+                    region: 'south',
+                    city: 'Kaohsiung'
                 }
             ]
         },
