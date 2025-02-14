@@ -108,8 +108,8 @@
                         <div
                             v-for="(item, index) in socialEvents"
                             :key="index"
-                            @click="navigateToDetail(item.id)"
                             class="flex items-center p-3 hover:bg-blue-50 rounded-lg cursor-pointer transition-colors duration-200"
+                            @click="navigateToDetail(item.id)"
                         >
                             <span
                                 class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-blue-600 font-bold"
@@ -146,8 +146,8 @@
                         <div
                             v-for="(item, index) in techEvents"
                             :key="index"
-                            @click="navigateToDetail(item.id)"
                             class="flex items-center p-3 hover:bg-purple-50 rounded-lg cursor-pointer transition-colors duration-200"
+                            @click="navigateToDetail(item.id)"
                         >
                             <span
                                 class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-full text-purple-600 font-bold"
@@ -182,8 +182,8 @@
                         <div
                             v-for="(item, index) in artEvents"
                             :key="index"
-                            @click="navigateToDetail(item.id)"
                             class="flex items-center p-3 hover:bg-pink-50 rounded-lg cursor-pointer transition-colors duration-200"
+                            @click="navigateToDetail(item.id)"
                         >
                             <span
                                 class="w-8 h-8 flex items-center justify-center bg-pink-100 rounded-full text-pink-600 font-bold"
@@ -220,8 +220,8 @@
                         <div
                             v-for="(item, index) in foodEvents"
                             :key="index"
-                            @click="navigateToDetail(item.id)"
                             class="flex items-center p-3 hover:bg-orange-50 rounded-lg cursor-pointer transition-colors duration-200"
+                            @click="navigateToDetail(item.id)"
                         >
                             <span
                                 class="w-8 h-8 flex items-center justify-center bg-orange-100 rounded-full text-orange-600 font-bold"
@@ -256,8 +256,8 @@
                         <div
                             v-for="(item, index) in outdoorEvents"
                             :key="index"
-                            @click="navigateToDetail(item.id)"
                             class="flex items-center p-3 hover:bg-green-50 rounded-lg cursor-pointer transition-colors duration-200"
+                            @click="navigateToDetail(item.id)"
                         >
                             <span
                                 class="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full text-green-600 font-bold"
@@ -292,8 +292,8 @@
                         <div
                             v-for="(item, index) in educationEvents"
                             :key="index"
-                            @click="navigateToDetail(item.id)"
                             class="flex items-center p-3 hover:bg-blue-50 rounded-lg cursor-pointer transition-colors duration-200"
+                            @click="navigateToDetail(item.id)"
                         >
                             <span
                                 class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-blue-600 font-bold"
@@ -324,8 +324,8 @@
                     Browse our full catalog of amazing experiences
                 </p>
                 <button
-                    @click="router.push('/events')"
                     class="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors duration-300"
+                    @click="router.push('/events')"
                 >
                     Explore All Events
                 </button>

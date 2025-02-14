@@ -50,7 +50,7 @@
     import MenuDropdown from './MenuDropdown.vue'
 
     const authStore = useAuthStore()
-    console.log(authStore.isAuthenticated)
+    // console.log(authStore.isAuthenticated)
     defineEmits(['login'])
 
     const { navigationLinks } = useNavigation()

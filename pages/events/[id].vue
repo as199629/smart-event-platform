@@ -211,8 +211,6 @@
         return eventStore.getEventById(eventId)
     })
 
-    console.log(event.value)
-
     // Add weather info computed property
     const weatherInfo = computed(() => {
         if (!event.value) return ''
