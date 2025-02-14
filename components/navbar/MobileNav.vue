@@ -6,11 +6,11 @@
                 class="absolute top-4 right-4"
                 @click="$emit('update:isOpen', false)"
             >
-                <XMarkIcon class="w-6 h-6 text-gray-400" />
+                <Icon name="heroicons:x-mark" />
             </button>
 
             <!-- Search Bar -->
-            <SearchBar v-model="localSearchQuery" class="mb-6" />
+            <navbarSearchBar v-model="localSearchQuery" class="mb-6" />
 
             <!-- Navigation Links -->
             <nav class="space-y-1">
@@ -59,8 +59,6 @@
 </template>
 
 <script setup lang="ts">
-    import { XMarkIcon } from '@heroicons/vue/24/outline'
-
     interface Props {
         isOpen: boolean
         searchQuery: string

@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-    import { onMounted, ref } from 'vue'
     import * as THREE from 'three'
 
     const canvasRef = ref<HTMLCanvasElement | null>(null)

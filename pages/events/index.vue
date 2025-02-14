@@ -127,7 +127,9 @@
                         <p
                             class="text-sm font-semibold text-gray-700 flex items-center"
                         >
-                            <CalendarIcon class="w-4 h-4 mr-2" />
+                            <Icon
+                                name="material-symbols:calendar-add-on-outline-sharp"
+                            />
                             {{ event.date }}
                         </p>
                     </div>
@@ -155,18 +157,22 @@
                     <!-- 活動資訊 -->
                     <div class="space-y-2 mb-4">
                         <p class="text-gray-600 text-sm flex items-center">
-                            <UserGroupIcon class="w-4 h-4 mr-2" />
+                            <Icon
+                                name="material-symbols:person-outline-sharp"
+                            />
                             <span>
                                 {{ event.availableSeats }} /
                                 {{ event.totalSeats }} seats
                             </span>
                         </p>
                         <p class="text-gray-600 text-sm flex items-center">
-                            <CurrencyDollarIcon class="w-4 h-4 mr-2" />
+                            <Icon name="material-symbols:attach-money" />
                             <span>{{ event.price }}</span>
                         </p>
                         <p class="text-gray-600 text-sm flex items-center">
-                            <MapPinIcon class="w-4 h-4 mr-2" />
+                            <Icon
+                                name="material-symbols:location-on-outline-sharp"
+                            />
                             <span>
                                 {{
                                     event.region.charAt(0).toUpperCase() +
@@ -197,12 +203,6 @@
 
 <script setup lang="ts">
     import { ref, computed, onMounted } from 'vue'
-    import {
-        CalendarIcon,
-        UserGroupIcon,
-        CurrencyDollarIcon,
-        MapPinIcon,
-    } from '@heroicons/vue/24/outline'
 
     const eventStore = useEventStore()
     const searchQuery = ref('')
@@ -213,7 +213,7 @@
 
     // Initialize events
     onMounted(() => {
-        eventStore.initializeEvents()
+        eventStore.fetchEvents()
     })
 
     // Use events from store

@@ -27,11 +27,15 @@
                     <h1 class="text-4xl font-bold mb-2">{{ event.name }}</h1>
                     <div class="flex items-center gap-4">
                         <span class="flex items-center gap-2">
-                            <i class="bi bi-calendar3"></i>
+                            <Icon
+                                name="material-symbols:calendar-add-on-outline-sharp"
+                            />
                             {{ event.date }}
                         </span>
                         <span class="flex items-center gap-2">
-                            <i class="bi bi-geo-alt"></i>
+                            <Icon
+                                name="material-symbols:location-on-outline-sharp"
+                            />
                             {{
                                 event.region.charAt(0).toUpperCase() +
                                 event.region.slice(1)
@@ -39,8 +43,12 @@
                             - {{ event.city }}
                         </span>
                         <span class="flex items-center gap-2">
-                            <i class="bi bi-pin-map"></i>
+                            <Icon name="material-symbols:map-search-outline" />
                             {{ event.location }}
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <Icon name="material-symbols:weather-snowy" />
+                            {{ weatherInfo }}
                         </span>
                     </div>
                 </div>
@@ -72,12 +80,12 @@
                         </div>
                         <div>
                             <button
-                                @click="register"
                                 :disabled="event.status === 'closed'"
                                 class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition transform hover:scale-105 disabled:bg-gray-400 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                                @click="register"
                             >
                                 <span class="flex items-center gap-2">
-                                    <i class="bi bi-ticket-perforated"></i>
+                                    <Icon name="tabler:ticket" />
                                     {{
                                         event.status === 'open'
                                             ? 'Register Now'
@@ -96,13 +104,13 @@
                             <button
                                 v-for="tab in tabs"
                                 :key="tab.id"
-                                @click="activeTab = tab.id"
                                 :class="[
                                     'py-4 px-1 font-medium transition-colors',
                                     activeTab === tab.id
                                         ? 'border-b-2 border-blue-600 text-blue-600'
                                         : 'text-gray-500 hover:text-gray-700',
                                 ]"
+                                @click="activeTab = tab.id"
                             >
                                 {{ tab.name }}
                             </button>
@@ -121,6 +129,9 @@
                         <!-- Add Google Maps -->
                         <div class="mt-6">
                             <h3 class="text-lg font-semibold mb-3">
+                                <Icon
+                                    name="material-symbols:location-on-outline-sharp"
+                                />
                                 Event Location
                             </h3>
                             <div
@@ -168,7 +179,9 @@
                     class="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg"
                 >
                     <div class="flex items-center gap-2">
-                        <i class="bi bi-check-circle-fill"></i>
+                        <Icon
+                            name="material-symbols:check-circle-outline-sharp"
+                        />
                         <span>
                             Registration successful! Please check your
                             notifications.
@@ -181,33 +194,56 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue'
-    import { useRoute } from 'vue-router'
-    import { useEventStore } from '~/stores/events'
+    import { useRoute, useRouter } from 'vue-router'
 
     const route = useRoute()
+    const router = useRouter()
     const eventStore = useEventStore()
+    const authStore = useAuthStore()
+    const weatherStore = useWeatherStore()
     const registered = ref(false)
     const config = useRuntimeConfig()
     const googleMapsApiKey = config.public.googleMapsApiKey
 
     // Get event from store
     const event = computed(() => {
-        const eventId = parseInt(route.params.id as string)
+        const eventId = route.params.id as string
         return eventStore.getEventById(eventId)
     })
 
     console.log(event.value)
 
-    onMounted(() => {
+    // Add weather info computed property
+    const weatherInfo = computed(() => {
+        if (!event.value) return ''
+        const weather = weatherStore.getWeatherByCity(event.value.city)
+        if (!weather) return 'Loading weather info...'
+        return `${weather.temperature} ${weather.description}`
+    })
+
+    onMounted(async () => {
         // Initialize events if needed
         if (eventStore.events.length === 0) {
-            eventStore.initializeEvents()
+            eventStore.fetchEvents()
+        }
+
+        // Fetch weather data for the event city
+        if (event.value) {
+            await weatherStore.fetchWeatherByCity(event.value.city)
         }
     })
 
     const register = () => {
-        registered.value = true
+        // Check if user is logged in
+        if (!authStore.isAuthenticated) {
+            console.log('User is not authenticated')
+            // Show login modal
+            authStore.showLoginModal = true
+            return
+        }
+
+        // If user is authenticated, redirect to payment page
+        router.push(`/payment/event/${route.params.id}`)
     }
 
     // Add new reactive refs

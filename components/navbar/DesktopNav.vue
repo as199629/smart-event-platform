@@ -13,17 +13,19 @@
         </nav>
 
         <!-- User Section -->
-        <div v-if="isLoggedIn" class="relative">
+        <div v-if="authStore.isAuthenticated" class="relative">
             <button
-                @click="isUserMenuOpen = !isUserMenuOpen"
                 class="flex items-center space-x-2"
+                @click="isUserMenuOpen = !isUserMenuOpen"
             >
                 <img
-                    :src="userProfile.avatar"
-                    :alt="userProfile.name"
+                    :src="authStore.user.avatar"
+                    :alt="authStore.user.name"
                     class="w-8 h-8 rounded-full object-cover"
                 />
-                <span class="text-gray-700">{{ userProfile.name }}</span>
+                <span class="text-gray-700">
+                    {{ authStore.user.name }}
+                </span>
             </button>
 
             <!-- User Dropdown Menu -->
@@ -36,25 +38,19 @@
         <!-- Login Button -->
         <button
             v-else
-            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+            class="px-2 py-1 bg-primary-600 rounded-lg border border-primary-700 hover:bg-black hover:text-white"
             @click="$emit('login')"
         >
-            Login
+            Log In
         </button>
     </div>
 </template>
 
 <script setup lang="ts">
     import MenuDropdown from './MenuDropdown.vue'
-    interface Props {
-        isLoggedIn: boolean
-        userProfile: {
-            name: string
-            avatar: string
-        }
-    }
 
-    defineProps<Props>()
+    const authStore = useAuthStore()
+    console.log(authStore.isAuthenticated)
     defineEmits(['login'])
 
     const { navigationLinks } = useNavigation()

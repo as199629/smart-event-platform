@@ -9,7 +9,7 @@ export default defineNuxtConfig({
             tailwindcss()
         ]
     },
-    modules: ['@pinia/nuxt', '@nuxtjs/color-mode', '@sidebase/nuxt-auth', '@nuxt/image'],
+    modules: ['@pinia/nuxt', '@nuxtjs/color-mode', '@sidebase/nuxt-auth', '@nuxt/image', '@nuxt/icon'],
     colorMode: {
         classSuffix: '',
     },

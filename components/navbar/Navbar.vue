@@ -15,14 +15,11 @@
                     />
                 </NuxtLink>
                 <SearchBar v-model="searchQuery" />
+                <WeatherWidget class="hidden md:flex" />
             </div>
 
             <!-- Desktop Navigation -->
-            <DesktopNav
-                :is-logged-in="isLoggedIn"
-                :user-profile="userProfile"
-                @login="loginModal = true"
-            />
+            <DesktopNav @login="authStore.openLoginModal()" />
 
             <!-- Mobile Menu Button -->
             <button class="md:hidden text-gray-700" @click="toggleMenu">
@@ -46,12 +43,9 @@
         <!-- Mobile Navigation -->
         <MobileNav
             :is-open="isMenuOpen"
-            @update:is-open="isMenuOpen = $event"
             :search-query="searchQuery"
+            @update:is-open="isMenuOpen = $event"
         />
-
-        <!-- Login Modal -->
-        <LoginModal v-if="loginModal" @close="loginModal = false" />
     </nav>
 </template>
 
@@ -60,20 +54,11 @@
     import DesktopNav from './DesktopNav.vue'
     import MobileNav from './MobileNav.vue'
     import SearchBar from './SearchBar.vue'
-    import LoginModal from '@/components/ui/LoginModal.vue'
+    import WeatherWidget from './WeatherWidget.vue'
 
-    // ... existing state management code ...
-
-    // Only keep the core state and logic in the main component
+    const authStore = useAuthStore()
     const searchQuery = ref('')
     const isMenuOpen = ref(false)
-    const loginModal = ref(false)
-    const isLoggedIn = ref(true)
-
-    const userProfile = {
-        name: 'Eric',
-        avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop',
-    }
 
     const toggleMenu = () => {
         isMenuOpen.value = !isMenuOpen.value

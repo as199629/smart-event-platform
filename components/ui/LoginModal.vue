@@ -32,6 +32,7 @@
                                     <button
                                         type="button"
                                         class="inline-flex w-full justify-center items-center rounded-md bg-white border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-50 sm:w-auto"
+                                        :disabled="isLoading"
                                         @click="handleSignIn"
                                     >
                                         <img
@@ -39,8 +40,18 @@
                                             alt="Google logo"
                                             class="mr-2 h-5 w-5"
                                         />
-                                        Continue with Google
+                                        {{
+                                            isLoading
+                                                ? 'Signing in...'
+                                                : 'Continue with Google'
+                                        }}
                                     </button>
+                                    <p
+                                        v-if="error"
+                                        class="mt-2 text-sm text-red-600"
+                                    >
+                                        {{ error }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +62,7 @@
                         <button
                             type="button"
                             class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                            @click="$emit('close')"
+                            @click="handleClose"
                         >
                             Cancel
                         </button>
@@ -64,12 +75,38 @@
 
 <script setup lang="ts">
     const { signIn } = useAuth()
+    const emit = defineEmits(['close'])
+
+    // Add state management
+    const isLoading = ref(false)
+    const error = ref('')
 
     const handleSignIn = async () => {
-        await signIn('google')
+        try {
+            isLoading.value = true
+            error.value = ''
+
+            // 直接使用完整的 URL 路徑
+            await signIn('google', {
+                redirect: false, // 先設為 false 來檢查回應
+            }).then(response => {
+                console.log('Sign in response:', response)
+                if (response?.error) {
+                    error.value = 'Authentication failed'
+                } else if (response?.url) {
+                    // 如果有回傳 URL，則手動重新導向
+                    window.location.href = response.url
+                }
+            })
+        } catch (e) {
+            error.value = 'Failed to sign in. Please try again.'
+            console.error('Sign in error:', e)
+        } finally {
+            isLoading.value = false
+        }
     }
 
-    defineEmits<{
-        (e: 'close'): void
-    }>()
+    const handleClose = () => {
+        emit('close')
+    }
 </script>

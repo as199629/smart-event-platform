@@ -1,19 +1,28 @@
 <template>
-    <div>
+    <div class="min-h-screen flex flex-col">
         <Navbar v-if="!isHomePage" />
-        <main :class="{ 'pt-16': !isHomePage }">
+        <main :class="['flex-grow', { 'pt-16': !isHomePage }]">
             <NuxtPage />
         </main>
+        <Footer v-if="!isHomePage" />
+        <!-- Global Login Modal -->
+        <LoginModal
+            v-if="authStore.showLoginModal"
+            @close="authStore.closeLoginModal()"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
-    import { computed } from 'vue'
     import { useRoute } from 'vue-router'
     import Navbar from '@/components/navbar/Navbar.vue'
+    import Footer from '~/components/Footer.vue'
+
+    import LoginModal from '@/components/ui/LoginModal.vue'
 
     const route = useRoute()
     const isHomePage = computed(() => route.name === 'index') // 假設首頁的路由名稱是 'home'
+    const authStore = useAuthStore()
     useHead({
         title: 'Taiwan Smart Event Platform',
         meta: [
@@ -23,12 +32,11 @@
             },
             {
                 property: 'og:description',
-                content:
-                    'Your source of news, culture, and infotainment from Taiwan, a voice of freedom in Asia. Watch our 24/7 live stream.',
+                content: 'Taiwan Smart Event Platform',
             },
             {
                 property: 'og:title',
-                content: 'TaiwanPlus – Bringing Taiwan to the World',
+                content: 'TaiwanSmart – Bringing Taiwan to the World',
             },
             { property: 'og:url', content: 'https://www.taiwanplus.com/' },
             { property: 'og:type', content: 'WebSite' },

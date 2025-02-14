@@ -48,7 +48,6 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue'
     import * as THREE from 'three'
 
     const canvasRef = ref<HTMLCanvasElement | null>(null)
