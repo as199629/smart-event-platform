@@ -1,4 +1,5 @@
 export const useNavigation = () => {
+    const { signOut} = useFirebaseAuth()
     // Main navigation links
     const navigationLinks = [
         { path: '/home', name: 'Home' },
@@ -38,7 +39,7 @@ export const useNavigation = () => {
     const profileMenuItems = [
         { label: 'Profile', href: '/profile', action: () => {} },
         { label: 'Settings', href: '/settings', action: () => {} },
-        { label: 'Logout', href: '#', action: () => {} }, // Logout action should be implemented in the component
+        { label: 'Logout', href: '#', action: () => {signOut()} }, // Logout action should be implemented in the component
     ]
 
     // Social media links

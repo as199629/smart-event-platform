@@ -89,6 +89,33 @@
                 <span class="mr-2">🏆</span>
                 Top Events by Category
             </h2>
+            <div class="event-ranking">
+                <h2 class="text-2xl font-bold mb-6">Top Events</h2>
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4"
+                >
+                    <div
+                        v-for="(event, index) in socialEvents"
+                        :key="event.name"
+                        class="event-card"
+                    >
+                        <div class="event-image-wrapper">
+                            <img
+                                :src="event.image"
+                                :alt="event.name"
+                                class="event-image"
+                            />
+                            <div class="rank-overlay">{{ index + 1 }}</div>
+                        </div>
+                        <div class="event-info">
+                            <h3 class="event-title">{{ event.name }}</h3>
+                            <p class="event-description">
+                                {{ event.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Social Events Card -->
                 <div

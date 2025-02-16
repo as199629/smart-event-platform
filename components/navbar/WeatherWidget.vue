@@ -83,8 +83,6 @@
 </template>
 
 <script setup lang="ts">
-    import { Icon } from '#components'
-
     const weatherStore = useWeatherStore()
     const getRainIcon = (probability: string) => {
         const value = parseInt(probability)

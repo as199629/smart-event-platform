@@ -15,7 +15,7 @@
                     />
                 </NuxtLink>
                 <SearchBar v-model="searchQuery" />
-                <WeatherWidget class="hidden md:flex" />
+                <WeatherWidget class="hidden lg:flex" />
             </div>
 
             <!-- Desktop Navigation -->

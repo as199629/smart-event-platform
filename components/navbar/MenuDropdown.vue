@@ -17,7 +17,7 @@
 
         <button
             class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-            @click="handleLogout"
+            @click="signOut"
         >
             Logout
         </button>
@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+    const { signOut } = useFirebaseAuth()
     defineEmits(['close'])
 
     const menuItems = [
@@ -32,11 +33,6 @@
         { name: 'Orders', path: '/orders' },
         { name: 'Settings', path: '/settings' },
     ]
-
-    const handleLogout = () => {
-        // Implement logout logic
-        console.log('Logout clicked')
-    }
 
     onMounted(() => {
         console.log('MenuDropdown mounted')

@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-    const { signIn } = useAuth()
+    const { signIn } = useFirebaseAuth()
     const emit = defineEmits(['close'])
 
     // Add state management
@@ -85,19 +85,7 @@
         try {
             isLoading.value = true
             error.value = ''
-
-            // 直接使用完整的 URL 路徑
-            await signIn('google', {
-                redirect: false, // 先設為 false 來檢查回應
-            }).then(response => {
-                console.log('Sign in response:', response)
-                if (response?.error) {
-                    error.value = 'Authentication failed'
-                } else if (response?.url) {
-                    // 如果有回傳 URL，則手動重新導向
-                    window.location.href = response.url
-                }
-            })
+            await signIn()
         } catch (e) {
             error.value = 'Failed to sign in. Please try again.'
             console.error('Sign in error:', e)

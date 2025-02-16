@@ -241,7 +241,7 @@
         }
 
         // If user is authenticated, redirect to payment page
-        router.push(`/payment/event/${route.params.id}`)
+        router.push(`/payment/${route.params.id}`)
     }
 
     // Add new reactive refs
