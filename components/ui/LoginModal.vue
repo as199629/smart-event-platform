@@ -74,7 +74,10 @@
 </template>
 
 <script setup lang="ts">
-    const { signIn } = useFirebaseAuth()
+    // Import the useAuthActions composable to get signIn
+    import { useAuthActions } from '@/plugins/firebase'
+
+    const { signIn } = useAuthActions()
     const emit = defineEmits(['close'])
 
     // Add state management

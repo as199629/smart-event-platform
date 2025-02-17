@@ -25,13 +25,14 @@
 </template>
 
 <script setup lang="ts">
-    const { signOut } = useFirebaseAuth()
+    import { useAuthActions } from '@/plugins/firebase'
+
+    const { signOut } = useAuthActions()
     defineEmits(['close'])
 
     const menuItems = [
-        { name: 'Profile', path: '/profile' },
-        { name: 'Orders', path: '/orders' },
-        { name: 'Settings', path: '/settings' },
+        { name: 'Profile', path: '/user/profile' },
+        { name: 'Orders', path: '/user/orders' },
     ]
 
     onMounted(() => {
