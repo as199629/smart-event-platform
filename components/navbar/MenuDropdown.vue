@@ -13,13 +13,13 @@
             {{ item.name }}
         </NuxtLink>
 
-        <div class="border-t border-gray-100 my-2"></div>
+        <div class="border-t border-gray-100 my-2" />
 
         <button
             class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
             @click="signOut"
         >
-            Logout
+            {{ $t('logout') }}
         </button>
     </div>
 </template>

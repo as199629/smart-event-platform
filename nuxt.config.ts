@@ -5,11 +5,18 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     css: ['~/assets/css/main.css'],
     vite: {
-        plugins: [
-            tailwindcss()
-        ]
+        plugins: [tailwindcss()],
     },
-    modules: ['@pinia/nuxt', '@nuxtjs/color-mode',  '@nuxt/image', '@nuxt/icon'],
+    modules: [
+        '@pinia/nuxt',
+        '@nuxtjs/color-mode',
+        '@nuxt/image',
+        '@nuxt/icon',
+        '@vueuse/nuxt',
+        '@nuxtjs/i18n',
+        '@formkit/auto-animate',
+        '@nuxtjs/sitemap',
+    ],
     colorMode: {
         classSuffix: '',
     },
@@ -21,7 +28,29 @@ export default defineNuxtConfig({
             firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
             firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
             firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-            firebaseAppId: process.env.FIREBASE_APP_ID
-        }
+            firebaseAppId: process.env.FIREBASE_APP_ID,
+        },
+    },
+    i18n: {
+        langDir: 'lang',
+        locales: [
+            {
+                code: 'en',
+                iso: 'en-US',
+                file: 'en.json',
+            },
+            {
+                code: 'zh-tw',
+                iso: 'zh-TW',
+                file: 'zh-tw.json',
+            },
+            {
+                code: 'ja',
+                iso: 'ja-JP',
+                file: 'ja.json',
+            },
+        ],
+        defaultLocale: 'en',
+        strategy: 'prefix_except_default',
     },
 })

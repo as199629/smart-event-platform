@@ -1,10 +1,10 @@
 <template>
     <div class="min-h-screen flex flex-col">
-        <Navbar v-if="!isHomePage" />
-        <main :class="['flex-grow', { 'pt-16': !isHomePage }]">
+        <Navbar />
+        <main class="flex-grow pt-16">
             <NuxtPage />
         </main>
-        <Footer v-if="!isHomePage" />
+        <Footer />
         <!-- Global Login Modal -->
         <LoginModal
             v-if="authStore.showLoginModal"
@@ -14,14 +14,14 @@
 </template>
 
 <script setup lang="ts">
-    import { useRoute } from 'vue-router'
+    // import { useRoute } from 'vue-router'
     import Navbar from '@/components/navbar/Navbar.vue'
     import Footer from '~/components/Footer.vue'
 
     import LoginModal from '@/components/ui/LoginModal.vue'
 
-    const route = useRoute()
-    const isHomePage = computed(() => route.name === 'index') // 假設首頁的路由名稱是 'home'
+    // const route = useRoute()
+    // const isHomePage = computed(() => route.name === 'index') // 假設首頁的路由名稱是 'home'
     const authStore = useAuthStore()
     useHead({
         title: 'Taiwan Smart Event Platform',

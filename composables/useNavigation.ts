@@ -2,14 +2,27 @@ import { useAuthActions } from '@/plugins/firebase'
 
 export const useNavigation = () => {
     const { signOut } = useAuthActions()
+    const { t, locale } = useI18n()
     // Main navigation links
-    const navigationLinks = [
-        { path: '/home', name: 'Home' },
-        { path: '/dashboard', name: 'Dashboard' },
-        { path: '/lottery', name: 'Lottery' },
-        { path: '/statistics', name: 'Statistics' },
-        { path: '/events', name: 'Events' },
-    ]
+    const navigationLinks = ref([
+        { path: '/', name: t('nav.home') },
+        { path: '/dashboard', name: t('nav.dashboard') },
+        { path: '/statistics', name: t('nav.statistics') },
+        { path: '/events', name: t('nav.events') },
+    ])
+
+    watch(
+        () => locale.value,
+        () => {
+            navigationLinks.value = [
+                { path: '/', name: t('nav.home') },
+                { path: '/dashboard', name: t('nav.dashboard') },
+                { path: '/statistics', name: t('nav.statistics') },
+                { path: '/events', name: t('nav.events') },
+            ]
+        },
+        { immediate: true }
+    )
 
     // Menu categories with their items
     const menuCategories = {
@@ -41,7 +54,13 @@ export const useNavigation = () => {
     const profileMenuItems = [
         { label: 'Profile', href: '/user/profile', action: () => {} },
         { label: 'Orders', href: '/user/orders', action: () => {} },
-        { label: 'Logout', href: '#', action: () => { signOut() } }, // Logout action should be implemented in the component
+        {
+            label: 'Logout',
+            href: '#',
+            action: () => {
+                signOut()
+            },
+        }, // Logout action should be implemented in the component
     ]
 
     // Social media links

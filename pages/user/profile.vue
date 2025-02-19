@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-4xl mx-auto p-5">
         <h1 class="text-2xl font-bold mb-6">Edit Profile</h1>
-        <form @submit.prevent="updateProfile" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="updateProfile">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <NuxtImg
@@ -9,7 +9,12 @@
                         alt="avatar"
                         class="w-20 h-20 rounded-full"
                     />
-                    <input type="file" id="avatar" class="mt-1 block w-full" />
+                    <input
+                        id="avatar"
+                        type="file"
+                        class="mt-1 block w-full"
+                        placeholder="Upload your avatar"
+                    />
                 </div>
                 <div>
                     <label
@@ -19,11 +24,15 @@
                         Name:
                     </label>
                     <input
-                        type="text"
                         id="name"
                         v-model="user.name"
+                        type="text"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter your name"
                     />
+                    <p v-if="!user.name" class="text-red-500 text-xs italic">
+                        Please enter your name.
+                    </p>
                 </div>
                 <div>
                     <label
@@ -41,6 +50,9 @@
                         <option value="female">Female</option>
                         <option value="other">Other</option>
                     </select>
+                    <p v-if="!user.gender" class="text-red-500 text-xs italic">
+                        Please select your gender.
+                    </p>
                 </div>
                 <div>
                     <label
@@ -50,11 +62,15 @@
                         Email:
                     </label>
                     <input
-                        type="email"
                         id="email"
                         v-model="user.email"
+                        type="email"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter your email"
                     />
+                    <p v-if="!user.email" class="text-red-500 text-xs italic">
+                        Please enter your email.
+                    </p>
                 </div>
                 <div>
                     <label
@@ -64,11 +80,15 @@
                         Address:
                     </label>
                     <input
-                        type="text"
                         id="address"
                         v-model="user.address"
+                        type="text"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter your address"
                     />
+                    <p v-if="!user.address" class="text-red-500 text-xs italic">
+                        Please enter your address.
+                    </p>
                 </div>
                 <div>
                     <label
@@ -77,12 +97,17 @@
                     >
                         Birthdate:
                     </label>
-                    <input
-                        type="date"
-                        id="birthdate"
+                    <VueDatePicker
                         v-model="user.birthdate"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Choose your birthdate"
+                        :format="format"
                     />
+                    <p
+                        v-if="!user.birthdate"
+                        class="text-red-500 text-xs italic"
+                    >
+                        Please choose your birthdate.
+                    </p>
                 </div>
                 <div>
                     <label
@@ -92,11 +117,18 @@
                         ID Number:
                     </label>
                     <input
-                        type="text"
                         id="idNumber"
                         v-model="user.idNumber"
+                        type="text"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter your ID number"
                     />
+                    <p
+                        v-if="!user.idNumber"
+                        class="text-red-500 text-xs italic"
+                    >
+                        Please enter your ID number.
+                    </p>
                 </div>
             </div>
             <div>
@@ -112,11 +144,18 @@
                             Name:
                         </label>
                         <input
-                            type="text"
                             id="emergencyName"
                             v-model="emergencyContact.name"
+                            type="text"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Enter emergency contact name"
                         />
+                        <p
+                            v-if="!emergencyContact.name"
+                            class="text-red-500 text-xs italic"
+                        >
+                            Please enter your emergency contact name.
+                        </p>
                     </div>
                     <div>
                         <label
@@ -126,11 +165,36 @@
                             Phone:
                         </label>
                         <input
-                            type="tel"
                             id="emergencyPhone"
                             v-model="emergencyContact.phone"
+                            type="tel"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="Enter emergency contact phone"
                         />
+                        <p
+                            v-if="!emergencyContact.phone"
+                            class="text-red-500 text-xs italic"
+                        >
+                            Please enter your emergency contact phone.
+                        </p>
+                    </div>
+                    <div>
+                        <label
+                            for="emergencyRelationship"
+                            class="block text-sm font-medium text-gray-700"
+                        >
+                            Relationship:
+                        </label>
+                        <select
+                            id="emergencyRelationship"
+                            v-model="emergencyContact.relationship"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                            <option value="family">Family</option>
+                            <option value="friend">Friend</option>
+                            <option value="spouse">Spouse</option>
+                            <option value="partner">Partner</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -141,13 +205,21 @@
                 Update
             </button>
         </form>
+        <ui-error-modal
+            v-if="showErrorModal"
+            :message="errorMessage"
+            @close="showErrorModal = false"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
+    import VueDatePicker from '@vuepic/vue-datepicker'
+    import '@vuepic/vue-datepicker/dist/main.css'
     definePageMeta({
         middleware: ['auth'],
     })
+    const format = ref('yyyy-MM-dd')
 
     const authStore = useAuthStore()
     const user = ref({
@@ -159,16 +231,37 @@
         idNumber: '',
         avatar: authStore.user.avatar,
     })
-    const emergencyContact = ref({ name: '', phone: '' })
+    const emergencyContact = ref({
+        name: '',
+        phone: '',
+        relationship: 'family',
+    })
 
-    // function handleAvatarChange(event: Event) {
-    //     const file = (event.target as HTMLInputElement).files?.[0]
-    //     if (file) {
-    //         user.value.avatar = URL.createObjectURL(file)
-    //     }
-    // }
+    const showErrorModal = ref(false)
+    const errorMessage = ref('')
 
-    function updateProfile() {
+    const updateProfile = () => {
+        const missingFields = []
+        if (!user.value.name) missingFields.push('Name')
+        if (!user.value.email) missingFields.push('Email')
+        if (!user.value.gender) missingFields.push('Gender')
+        if (!user.value.address) missingFields.push('Address')
+        if (!user.value.birthdate) missingFields.push('Birthdate')
+        if (!user.value.idNumber) missingFields.push('ID Number')
+        if (!emergencyContact.value.name)
+            missingFields.push('Emergency Contact Name')
+        if (!emergencyContact.value.phone)
+            missingFields.push('Emergency Contact Phone')
+        if (!emergencyContact.value.relationship)
+            missingFields.push('Emergency Contact Relationship')
+
+        if (missingFields.length > 0) {
+            errorMessage.value = `Please fill out the following fields:${missingFields.join(
+                ', '
+            )}.`
+            showErrorModal.value = true
+            return
+        }
         console.log('Profile updated:', user.value)
         // API call to update user profile
     }

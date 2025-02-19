@@ -34,13 +34,14 @@ export const useEventStore = defineStore('events', () => {
     async function fetchEvents() {
         isLoading.value = true
         error.value = null
-        
+
         try {
             const response = await fetch('/api/default/event')
             const eventsData = await response.json()
             events.value = eventsData as Event[]
         } catch (err) {
-            error.value = err instanceof Error ? err.message : '無法取得活動資料'
+            error.value =
+                err instanceof Error ? err.message : '無法取得活動資料'
             console.error('Error fetching events:', err)
         } finally {
             isLoading.value = false
@@ -69,8 +70,10 @@ export const useEventStore = defineStore('events', () => {
     })
 
     const activeUsers = computed(() => {
-        return events.value.reduce((sum, event) => 
-            sum + (event.totalSeats - event.availableSeats), 0)
+        return events.value.reduce(
+            (sum, event) => sum + (event.totalSeats - event.availableSeats),
+            0
+        )
     })
 
     function getEventById(id: string): Event | undefined {
@@ -91,6 +94,6 @@ export const useEventStore = defineStore('events', () => {
         activeUsers,
         // Actions
         fetchEvents,
-        getEventById
+        getEventById,
     }
 })

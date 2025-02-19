@@ -11,6 +11,15 @@
                 {{ link.name }}
             </NuxtLink>
         </nav>
+        <select
+            v-model="selectedLanguage"
+            class="px-2 py-1 bg-primary-600 rounded-lg border border-primary-700 hover:bg-black hover:text-white"
+            @change="changeLanguage(selectedLanguage)"
+        >
+            <option value="en">English</option>
+            <option value="zh-tw">中文</option>
+            <option value="ja">日本語</option>
+        </select>
 
         <!-- User Section -->
         <div v-if="authStore.isAuthenticated" class="relative">
@@ -50,9 +59,16 @@
     import MenuDropdown from './MenuDropdown.vue'
 
     const authStore = useAuthStore()
-    // console.log(authStore.isAuthenticated)
     defineEmits(['login'])
 
     const { navigationLinks } = useNavigation()
     const isUserMenuOpen = ref(false)
+    const { locale, setLocale } = useI18n()
+    console.log(locale.value)
+
+    const selectedLanguage = ref(locale.value)
+
+    const changeLanguage = (value: string) => {
+        setLocale(value as 'en' | 'zh-tw' | 'ja')
+    }
 </script>
