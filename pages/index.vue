@@ -107,7 +107,9 @@
                     :key="event.name"
                     class="px-2"
                 >
-                    <ui-card :event="event" :index="index" />
+                    <NuxtLink :to="`/events/${event.id}`">
+                        <ui-card :event="event" :index="index" />
+                    </NuxtLink>
                 </SwiperSlide>
 
                 <!-- Custom navigation buttons -->
@@ -147,10 +149,10 @@
     import 'swiper/css/navigation'
     import { Navigation } from 'swiper/modules'
     import { useEventStore } from '@/stores/events'
-
+    const { t } = useI18n()
     // SEO optimization
     useHead({
-        title: 'Event Platform - Discover Amazing Events',
+        title: t('web-title'),
         meta: [
             {
                 name: 'description',
@@ -181,11 +183,6 @@
         await eventStore.fetchEvents()
         allEvents.value = eventStore.events
     })
-
-    // Navigation function
-    // const navigateToDetail = (eventId: string) => {
-    //     router.push(`/events/${eventId}`)
-    // }
 
     // Get statistics from store
     const totalRegistrations = computed(() => eventStore.totalRegistrations)

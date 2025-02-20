@@ -1,17 +1,15 @@
-// ... existing code ...
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: 'class', // 確保啟用class-based dark mode
+    content: [
+        './components/**/*.{js,vue,ts}',
+        './layouts/**/*.vue',
+        './pages/**/*.vue',
+        './plugins/**/*.{js,ts}',
+        './app.vue',
+    ],
     theme: {
-        extend: {
-            colors: {
-                // 添加或修改顏色
-                primary: '#3b82f6',
-                secondary: '#10b981',
-                dark: {
-                    900: '#0a0a0a',
-                    800: '#1a1a1a',
-                },
-            },
-        },
+        extend: {},
     },
+    darkMode: ['class', '[data-theme="dark"]'],
+    plugins: [],
 }

@@ -20,7 +20,7 @@
             <option value="zh-tw">中文</option>
             <option value="ja">日本語</option>
         </select>
-
+        <ModeSwitch />
         <!-- User Section -->
         <div v-if="authStore.isAuthenticated" class="relative">
             <button
@@ -57,6 +57,7 @@
 
 <script setup lang="ts">
     import MenuDropdown from './MenuDropdown.vue'
+    import ModeSwitch from './ModeSwitch.vue'
 
     const authStore = useAuthStore()
     defineEmits(['login'])
