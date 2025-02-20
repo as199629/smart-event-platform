@@ -18,9 +18,9 @@
             <div class="flex items-center">
                 <Icon
                     name="material-symbols:location-on"
-                    class="w-4 h-4 mr-1 text-gray-600"
+                    class="w-4 h-4 mr-1 text-gray-600 dark:text-gray-300"
                 />
-                <span class="font-medium text-gray-700">
+                <span class="font-medium text-gray-700 dark:text-gray-100">
                     {{ weatherStore.userLocationWeatherData.locationName }}
                 </span>
             </div>
@@ -31,7 +31,7 @@
                     name="material-symbols:device-thermostat"
                     class="w-4 h-4 mr-1 text-orange-500"
                 />
-                <span class="text-gray-700">
+                <span class="text-gray-700 dark:text-gray-100">
                     {{ weatherStore.userLocationWeatherData.temperature }}
                 </span>
             </div>
@@ -54,7 +54,7 @@
                         )
                     "
                 />
-                <span class="text-gray-700">
+                <span class="text-gray-700 dark:text-gray-100">
                     {{ weatherStore.userLocationWeatherData.rainProbability }}
                 </span>
             </div>

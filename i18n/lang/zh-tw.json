@@ -31,6 +31,8 @@
         "weeklyGrowth": "這週成長",
         "totalEvents": "總活動數",
         "activeUsers": "活躍用戶",
-        "topEvents": "本週熱門活動"
+        "topEvents": "本週熱門活動",
+        "search": "搜尋...",
+        "login": "登入"
     }
 }

@@ -31,6 +31,8 @@
         "weeklyGrowth": "週次成長",
         "totalEvents": "総イベント数",
         "activeUsers": "アクティブユーザー",
-        "topEvents": "トップイベント"
+        "topEvents": "トップイベント",
+        "search": "検索...",
+        "login": "ログイン"
     }
 }

@@ -1,8 +1,8 @@
 <template>
-    <footer class="py-8 text-sm bg-white">
+    <footer class="py-8 text-sm bg-white dark:bg-gray-900">
         <div class="container mx-auto">
             <div
-                class="flex flex-col sm:flex-row justify-center items-center gap-4 text-gray-600"
+                class="flex flex-col sm:flex-row justify-center items-center gap-4 text-gray-600 dark:text-gray-100"
             >
                 <span>
                     {{ $t('web-title') }}

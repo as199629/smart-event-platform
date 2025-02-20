@@ -3,8 +3,8 @@
         <input
             v-model="localValue"
             type="text"
-            placeholder="Search..."
-            class="w-full md:w-auto pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+            :placeholder="$t('index.search')"
+            class="w-full md:w-auto pl-10 pr-4 py-2 border border-gray-200 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
             style="width: 100%; max-width: 256px"
         />
         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">

@@ -6,19 +6,19 @@
                 v-for="link in navigationLinks"
                 :key="link.path"
                 :to="link.path"
-                class="text-gray-600 hover:text-gray-900"
+                class="text-gray-600 dark:text-gray-100 hover:text-gray-900 dark:hover:text-gray-100"
             >
                 {{ link.name }}
             </NuxtLink>
         </nav>
         <select
             v-model="selectedLanguage"
-            class="px-2 py-1 bg-primary-600 rounded-lg border border-primary-700 hover:bg-black hover:text-white"
+            class="px-2 py-1 bg-primary-600 dark:bg-primary-400 rounded-lg border border-primary-700 dark:border-primary-400 hover:bg-black hover:text-white dark:bg-black dark:hover:text-white dark:text-gray-100"
             @change="changeLanguage(selectedLanguage)"
         >
-            <option value="en">English</option>
-            <option value="zh-tw">中文</option>
-            <option value="ja">日本語</option>
+            <option class="dark:text-gray-900" value="en">English</option>
+            <option class="dark:text-gray-900" value="zh-tw">中文</option>
+            <option class="dark:text-gray-900" value="ja">日本語</option>
         </select>
         <ModeSwitch />
         <!-- User Section -->
@@ -50,7 +50,7 @@
             class="px-2 py-1 bg-primary-600 rounded-lg border border-primary-700 hover:bg-black hover:text-white"
             @click="$emit('login')"
         >
-            Log In
+            {{ $t('index.login') }}
         </button>
     </div>
 </template>

@@ -1,5 +1,7 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div
+        class="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-500"
+    >
         <!-- Hero Section -->
         <div class="relative overflow-hidden mb-8">
             <!-- Replace solid color with background image -->
@@ -23,7 +25,9 @@
 
         <!-- Overall Trend Section with Animation -->
         <section class="container mx-auto px-4 mb-12">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+            <h2
+                class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100 flex items-center"
+            >
                 <span class="mr-2">📈</span>
                 {{ $t('index.currentRegistrationTrends') }}
             </h2>
@@ -87,7 +91,9 @@
         <section
             class="container mx-auto px-4 mb-12 overflow-hidden group/swiper"
         >
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+            <h2
+                class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100 flex items-center"
+            >
                 <span class="mr-2">🏆</span>
                 {{ $t('index.topEvents') }}
             </h2>
