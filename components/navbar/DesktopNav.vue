@@ -50,7 +50,7 @@
             class="px-2 py-1 bg-primary-600 rounded-lg border border-primary-700 hover:bg-black hover:text-white"
             @click="$emit('login')"
         >
-            {{ $t('index.login') }}
+            {{ $t('navbar.login') }}
         </button>
     </div>
 </template>

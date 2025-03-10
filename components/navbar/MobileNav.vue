@@ -1,5 +1,8 @@
 <template>
-    <div v-show="isOpen" class="md:hidden fixed inset-0 bg-white z-30">
+    <div
+        v-show="isOpen"
+        class="md:hidden fixed inset-0 bg-white dark:bg-gray-900 z-30"
+    >
         <div class="container mx-auto p-2">
             <!-- Close Button -->
             <button
@@ -25,14 +28,16 @@
                     >
                         <Icon
                             :name="getCategoryIcon(category)"
-                            class="w-5 h-5 text-gray-700 mr-3"
+                            class="w-5 h-5 text-gray-700 dark:text-gray-100 mr-3"
                         />
-                        <span class="text-gray-900 font-medium">
+                        <span
+                            class="text-gray-900 dark:text-gray-100 font-medium"
+                        >
                             {{ category }}
                         </span>
                         <Icon
                             name="heroicons:chevron-right"
-                            class="w-5 h-5 text-gray-400 ml-auto transition-transform duration-200"
+                            class="w-5 h-5 text-gray-400 dark:text-gray-100 ml-auto transition-transform duration-200"
                             :class="{ 'rotate-90': openCategories[category] }"
                         />
                     </div>
@@ -43,12 +48,12 @@
             <div class="absolute bottom-0 left-0 right-0 p-4 border-t">
                 <div class="flex gap-3">
                     <button
-                        class="flex-1 px-4 py-2 border rounded-lg text-gray-700"
+                        class="flex-1 px-4 py-2 border rounded-lg text-gray-700 dark:text-gray-100"
                     >
                         Submit an image
                     </button>
                     <button
-                        class="flex-1 px-4 py-2 border rounded-lg text-gray-700"
+                        class="flex-1 px-4 py-2 border rounded-lg text-gray-700 dark:text-gray-100"
                     >
                         {{ $t('login') }}
                     </button>

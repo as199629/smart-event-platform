@@ -31,7 +31,9 @@
         "weeklyGrowth": "Weekly Growth",
         "totalEvents": "Total Events",
         "activeUsers": "Active Users",
-        "topEvents": "Top Events",
+        "topEvents": "Top Events"
+    },
+    "navbar": {
         "search": "Search...",
         "login": "Login"
     }

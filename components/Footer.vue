@@ -1,4 +1,5 @@
 <template>
+    <hr class="border-gray-200 dark:border-gray-700" />
     <footer class="py-8 text-sm bg-white dark:bg-gray-900">
         <div class="container mx-auto">
             <div
