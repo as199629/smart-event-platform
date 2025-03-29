@@ -7,6 +7,7 @@ class ScheduleItem(BaseModel):
     activity: str
 
 class EventBase(BaseModel):
+    id: str
     title: str
     image: Optional[str] = None
     status: str = "open"
@@ -33,23 +34,6 @@ class EventBase(BaseModel):
 class EventCreate(EventBase):
     id: str
 
-class EventResponse(BaseModel):
-    id: str
-    title: str
-    image: str
-    status: str
-    available_seats: int
-    total_seats: int
-    price: float
-    start_time: datetime
-    end_time: datetime
-    location: str
-    description: str
-    schedule: List[ScheduleItem]
-    region: str
-    city: str
-    category: str
-    participants: int
-
+class EventResponse(EventBase):
     class Config:
         from_attributes = True 

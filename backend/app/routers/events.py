@@ -5,6 +5,8 @@ from typing import List
 from app.database import get_db
 from app.models.event import Event
 from app.schemas.event import EventCreate, EventResponse
+import json
+from app.utils.redis_config import RedisCache
 
 router = APIRouter()
 
@@ -26,16 +28,23 @@ async def create_event(event: EventCreate, db: AsyncSession = Depends(get_db)):
         await db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.get("/events", response_model=List[EventResponse])
+@router.get("/", response_model=List[EventResponse])
 async def get_events(db: AsyncSession = Depends(get_db)):
     try:
-        query = select(Event)
-        result = await db.execute(query)
+        # 加入錯誤處理和日誌
+        print("Fetching events from database...")  # 除錯用
+        result = await db.execute(
+            select(Event).order_by(Event.start_time)
+        )
         events = result.scalars().all()
+        print(f"Found {len(list(events))} events")  # 除錯用
         return events
     except Exception as e:
-        print(f"Error: {str(e)}")  # 加入錯誤日誌
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"Error: {str(e)}")  # 除錯用
+        raise HTTPException(
+            status_code=500,
+            detail=f"Database error: {str(e)}"
+        )
 
 @router.get("/{event_id}", response_model=EventResponse)
 async def get_event(event_id: int, db: AsyncSession = Depends(get_db)):
