@@ -1,0 +1,40 @@
+{
+    "web-title": "Smart Event Platform",
+    "copyright": "Copyright",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "logout": "Logout",
+    "login": "Login",
+    "nav": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "statistics": "Statistics",
+        "events": "Events"
+    },
+    "company": {
+        "about": "About",
+        "history": "History",
+        "careers": "Careers",
+        "blog": "Blog",
+        "press": "Press"
+    },
+    "index": {
+        "title": "Discover Amazing Events",
+        "description": "Join exciting activities and meet new people in your area",
+        "button": "Get Started",
+        "ready": "Ready to Join an Event?",
+        "browse": "Browse our full catalog of amazing experiences",
+        "explore": "Explore All Events",
+        "currentRegistrationTrends": "Current Registration Trends",
+        "totalRegistrations": "Total Registrations",
+        "weeklyGrowth": "Weekly Growth",
+        "totalEvents": "Total Events",
+        "activeUsers": "Active Users",
+        "topEvents": "Top Events"
+    },
+    "navbar": {
+        "search": "Search...",
+        "login": "Login"
+    }
+}
