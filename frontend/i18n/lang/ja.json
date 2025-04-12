@@ -10,7 +10,9 @@
         "home": "ホーム",
         "dashboard": "ダッシュボード",
         "statistics": "統計",
-        "events": "イベント"
+        "events": "イベント",
+        "profile": "プロフィール",
+        "orders": "注文履歴"
     },
     "company": {
         "about": "約",

@@ -10,7 +10,7 @@
             class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
             @click="$emit('close')"
         >
-            {{ item.name }}
+            {{ $t(item.name) }}
         </NuxtLink>
 
         <div class="border-t border-gray-100 my-2" />
@@ -31,8 +31,8 @@
     defineEmits(['close'])
 
     const menuItems = [
-        { name: 'Profile', path: '/user/profile' },
-        { name: 'Orders', path: '/user/orders' },
+        { name: 'nav.profile', path: '/user/profile' },
+        { name: 'nav.orders', path: '/user/orders' },
     ]
 
     onMounted(() => {

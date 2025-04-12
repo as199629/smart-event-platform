@@ -10,7 +10,9 @@
         "home": "首頁",
         "dashboard": "首頁",
         "statistics": "統計",
-        "events": "活動"
+        "events": "活動",
+        "profile": "個人資料",
+        "orders": "訂單紀錄"
     },
     "company": {
         "about": "關於",

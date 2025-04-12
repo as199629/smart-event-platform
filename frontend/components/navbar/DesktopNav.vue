@@ -32,7 +32,7 @@
                     :alt="authStore.user.name"
                     class="w-8 h-8 rounded-full object-cover"
                 />
-                <span class="text-gray-700">
+                <span class="text-gray-800 dark:text-gray-100">
                     {{ authStore.user.name }}
                 </span>
             </button>

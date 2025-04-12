@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
-    css: ["@/assets/css/main.css"],
+    css: ['@/assets/css/main.css'],
     postcss: {
         plugins: {
             tailwindcss: {},
@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     ],
     runtimeConfig: {
         public: {
+            apiUrl: process.env.API_URL,
             googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
             firebaseApiKey: process.env.FIREBASE_API_KEY,
             firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,

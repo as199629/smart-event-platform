@@ -10,7 +10,9 @@
         "home": "Home",
         "dashboard": "Dashboard",
         "statistics": "Statistics",
-        "events": "Events"
+        "events": "Events",
+        "profile": "Profile",
+        "orders": "Orders"
     },
     "company": {
         "about": "About",

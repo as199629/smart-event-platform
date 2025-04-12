@@ -35,6 +35,30 @@ export default defineNuxtPlugin(() => {
             authStore.user.email = user.email || ''
             authStore.user.googleId = user.uid || ''
             authStore.showLoginModal = false
+
+             // const userData = {
+            //     google_id: user.uid,
+            //     email: user.email,
+            //     username: user.displayName || 'Default User',
+            //     avatar: user.photoURL || '',
+            // }
+
+            // const { data, error } = await useFetch(
+            //     `${config.public.apiUrl}/users/register_or_login`,
+            //     {
+            //         method: 'POST',
+            //         body: userData,
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //     },
+            // )
+
+            // if (error.value) {
+            //     console.error('Backend user creation/login error:', error.value)
+            // } else {
+            //     console.log('Backend user created or logged in:', data.value)
+            // }
         } else {
             // User is signed out
             authStore.isAuthenticated = false
@@ -48,6 +72,8 @@ export default defineNuxtPlugin(() => {
 
 export const useAuthActions = () => {
     const auth = getAuth()
+    // const config = useRuntimeConfig()
+    // const authStore = useAuthStore()
 
     const signIn = async () => {
         try {
